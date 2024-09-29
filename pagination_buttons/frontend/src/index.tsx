@@ -1,8 +1,22 @@
-import {RenderData, Streamlit} from "streamlit-component-lib"
+import { RenderData, Streamlit } from "streamlit-component-lib"
 
-const BUTTON_MARGIN_RIGHT = "5px"
-const BUTTON_WIDTH = "35px"
 const BUTTON_ATTR_RETURNS = "element-returns"
+
+
+const buttonStyle: CSSStyleDeclaration = {
+  marginRight: "5px",
+  width: "35px",
+  border: "1px solid",
+  textAlign: "center",
+  textDecoration: "none",
+  display: "inline-block",
+  fontSize: "10px",
+  fontWeight: "bold",
+  margin: "4px 2px",
+  cursor: "pointer",
+  borderRadius: "15px",
+  transition: "background-color 0.3s ease",
+} as CSSStyleDeclaration
 
 const span = document.body.appendChild(document.createElement("span"))
 
@@ -26,27 +40,32 @@ last.textContent = ">>"
 last.setAttribute("title", "Last")
 last.setAttribute(BUTTON_ATTR_RETURNS, "last")
 
-const PaginationButtons = [first, previous, next, last]
-
-for (const button of PaginationButtons) {
-    button.style.width = BUTTON_WIDTH
-    button.style.marginRight = BUTTON_MARGIN_RIGHT
-    button.onclick = function (): void {
-        Streamlit.setComponentValue(button.getAttribute(BUTTON_ATTR_RETURNS))
-    }
-}
+const paginationButtons = [first, previous, next, last]
 
 function onRender(event: Event): void {
-    // Get the RenderData from the event
-    const data = (event as CustomEvent<RenderData>).detail
-    if (data.theme) {
-        for (const button of PaginationButtons) {
-            button.style.color = data.theme.primaryColor
-            button.style.backgroundColor = data.theme.secondaryBackgroundColor
-            button.style.border = `1px solid`
-        }
+  const data = (event as CustomEvent<RenderData>).detail
+  if (data.theme) {
+    const theme = data.theme
+    for (const button of paginationButtons) {
+      button.style.color = theme.primaryColor
+      button.style.backgroundColor = theme.secondaryBackgroundColor
+      button.style.border = `1px solid`
+
+      Object.assign(button.style, buttonStyle)
+
+      button.onclick = function(): void {
+        Streamlit.setComponentValue(button.getAttribute(BUTTON_ATTR_RETURNS))
+      }
+      button.onmouseover = function(): void {
+        button.style.backgroundColor = "red"
+      }
+      button.onmouseout = function(): void {
+        button.style.backgroundColor = theme.secondaryBackgroundColor
+      }
+
     }
-    Streamlit.setFrameHeight()
+  }
+  Streamlit.setFrameHeight()
 }
 
 Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
