@@ -4,6 +4,9 @@ import streamlit.components.v1 as components
 
 _RELEASE = True
 
+if os.getenv('_ST_PAGINATION_BUTTONS_NOT_RELEASE_'):
+    _RELEASE = False
+
 if not _RELEASE:
     _component_func = components.declare_component(
         "pagination_buttons",
