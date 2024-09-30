@@ -11,17 +11,16 @@ setuptools.setup(
     author="Piotr Synowiec",
     author_email="psynowiec@gmail.com",
     description="Streamlit pagination buttons component",
+    license="MIT",
+    keywords=["streamlit", "streamlit-component"],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/mysiar-org/st-pagination-buttons",
     packages=setuptools.find_packages(),
     include_package_data=True,
     classifiers=[],
     python_requires=">=3.7",
     install_requires=[
-        # By definition, a Custom Component depends on Streamlit.
-        # If your component has other Python dependencies, list
-        # them here.
         "streamlit >= 0.63",
     ],
     extras_require={
