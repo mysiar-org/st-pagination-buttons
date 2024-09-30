@@ -1,8 +1,21 @@
-import {RenderData, Streamlit} from "streamlit-component-lib"
+import { RenderData, Streamlit } from "streamlit-component-lib"
 
-const BUTTON_MARGIN_RIGHT = "5px"
-const BUTTON_WIDTH = "35px"
 const BUTTON_ATTR_RETURNS = "element-returns"
+
+const buttonBorder = "1px solid"
+
+const buttonStyle: CSSStyleDeclaration = {
+  marginRight: "5px",
+  border: buttonBorder,
+  textAlign: "center",
+  textDecoration: "none",
+  display: "inline-block",
+  fontWeight: "bold",
+  margin: "4px 2px",
+  cursor: "pointer",
+  borderRadius: "8px",
+  outline: "0px !important"
+} as CSSStyleDeclaration
 
 const span = document.body.appendChild(document.createElement("span"))
 
@@ -26,27 +39,50 @@ last.textContent = ">>"
 last.setAttribute("title", "Last")
 last.setAttribute(BUTTON_ATTR_RETURNS, "last")
 
-const PaginationButtons = [first, previous, next, last]
-
-for (const button of PaginationButtons) {
-    button.style.width = BUTTON_WIDTH
-    button.style.marginRight = BUTTON_MARGIN_RIGHT
-    button.onclick = function (): void {
-        Streamlit.setComponentValue(button.getAttribute(BUTTON_ATTR_RETURNS))
-    }
-}
+const paginationButtons = [first, previous, next, last]
 
 function onRender(event: Event): void {
-    // Get the RenderData from the event
-    const data = (event as CustomEvent<RenderData>).detail
-    if (data.theme) {
-        for (const button of PaginationButtons) {
-            button.style.color = data.theme.primaryColor
-            button.style.backgroundColor = data.theme.secondaryBackgroundColor
-            button.style.border = `1px solid`
-        }
+  const data = (event as CustomEvent<RenderData>).detail
+  if (data.theme) {
+    const theme = data.theme
+    for (const button of paginationButtons) {
+      button.style.color = theme.textColor
+      button.style.backgroundColor = theme.backgroundColor
+      button.style.border = buttonBorder
+      button.style.fontSize = data.args["font_size"]
+      button.style.width = data.args["width"]
+
+      Object.assign(button.style, buttonStyle)
+
+      button.onmouseover = function(): void {
+        button.style.color = theme.primaryColor
+        button.style.borderColor = theme.primaryColor
+      }
+
+      button.onmouseout = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.backgroundColor
+        button.style.border = buttonBorder
+      }
+
+      button.onclick = function(): void {
+        Streamlit.setComponentValue(button.getAttribute(BUTTON_ATTR_RETURNS))
+      }
+
+      button.onmousedown = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.primaryColor
+        button.style.border = "1px solid " + theme.primaryColor
+      }
+
+      button.onmouseup = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.backgroundColor
+        button.style.border = buttonBorder
+      }
     }
-    Streamlit.setFrameHeight()
+  }
+  Streamlit.setFrameHeight()
 }
 
 Streamlit.events.addEventListener(Streamlit.RENDER_EVENT, onRender)
