@@ -15,7 +15,7 @@ else:
     _component_func = components.declare_component("pagination_buttons", path=build_dir)
 
 
-def pagination_buttons(key=None):
+def pagination_buttons(key=None, font_size="10px", width="35px"):
     """Create a new instance of "pagination_buttons".
 
     Parameters
@@ -24,7 +24,10 @@ def pagination_buttons(key=None):
         An optional key that uniquely identifies this component. If this is
         None, and the component's arguments are changed, the component will
         be re-mounted in the Streamlit frontend and lose its current state.
-
+    font_size: str
+        The font size of the buttons.
+    width: str
+        The width of the buttons.
     Returns
     -------
     str
@@ -33,7 +36,8 @@ def pagination_buttons(key=None):
         This is the value passed to `Streamlit.setComponentValue` on the
         frontend.
 
+
     """
-    component_value = _component_func(key=key, default=None)
+    component_value = _component_func(key=key, font_size=font_size, width=width, default=None)
 
     return component_value

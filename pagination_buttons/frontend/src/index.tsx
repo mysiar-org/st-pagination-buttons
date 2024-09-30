@@ -2,20 +2,19 @@ import { RenderData, Streamlit } from "streamlit-component-lib"
 
 const BUTTON_ATTR_RETURNS = "element-returns"
 
+const buttonBorder = "1px solid"
 
 const buttonStyle: CSSStyleDeclaration = {
   marginRight: "5px",
-  width: "35px",
-  border: "1px solid",
+  border: buttonBorder,
   textAlign: "center",
   textDecoration: "none",
   display: "inline-block",
-  fontSize: "10px",
   fontWeight: "bold",
   margin: "4px 2px",
   cursor: "pointer",
-  borderRadius: "15px",
-  transition: "background-color 0.3s ease",
+  borderRadius: "8px",
+  outline: "0px !important"
 } as CSSStyleDeclaration
 
 const span = document.body.appendChild(document.createElement("span"))
@@ -47,22 +46,40 @@ function onRender(event: Event): void {
   if (data.theme) {
     const theme = data.theme
     for (const button of paginationButtons) {
-      button.style.color = theme.primaryColor
-      button.style.backgroundColor = theme.secondaryBackgroundColor
-      button.style.border = `1px solid`
+      button.style.color = theme.textColor
+      button.style.backgroundColor = theme.backgroundColor
+      button.style.border = buttonBorder
+      button.style.fontSize = data.args["font_size"]
+      button.style.width = data.args["width"]
 
       Object.assign(button.style, buttonStyle)
+
+      button.onmouseover = function(): void {
+        button.style.color = theme.primaryColor
+        button.style.borderColor = theme.primaryColor
+      }
+
+      button.onmouseout = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.backgroundColor
+        button.style.border = buttonBorder
+      }
 
       button.onclick = function(): void {
         Streamlit.setComponentValue(button.getAttribute(BUTTON_ATTR_RETURNS))
       }
-      button.onmouseover = function(): void {
-        button.style.backgroundColor = "red"
-      }
-      button.onmouseout = function(): void {
-        button.style.backgroundColor = theme.secondaryBackgroundColor
+
+      button.onmousedown = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.primaryColor
+        button.style.border = "1px solid " + theme.primaryColor
       }
 
+      button.onmouseup = function(): void {
+        button.style.color = theme.textColor
+        button.style.backgroundColor = theme.backgroundColor
+        button.style.border = buttonBorder
+      }
     }
   }
   Streamlit.setFrameHeight()
