@@ -1,4 +1,4 @@
-# streamlit pagination-buttons component
+# Streamlit pagination-buttons component
 
 ---
 
