@@ -9,13 +9,13 @@ install::
 
 run::
 	cd pagination_buttons/frontend && npm start &
-	. venv/bin/activate && streamlit run pagination_buttons/example.py
+	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run pagination_buttons/example.py
 
 run-front::
 	cd pagination_buttons/frontend && npm start &
 
 run-st::
-	. venv/bin/activate && streamlit run pagination_buttons/example.py
+	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run pagination_buttons/example.py
 
 
 build::
