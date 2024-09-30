@@ -8,7 +8,7 @@ Streamlit pagination buttons component
 ## Installation instructions
 
 ```sh
-pip install pagination_buttons
+pip install st-pagination-buttons
 ```
 
 ## Usage instructions
@@ -16,9 +16,9 @@ pip install pagination_buttons
 ```python
 import streamlit as st
 
-from pagination_buttons import pagination_buttons
+from st_pagination_buttons import st_pagination_buttons
 
-clicked_button = pagination_buttons()
+clicked_button = st_pagination_buttons()
 
 st.write(f"Clicked: {clicked_button}")
 ```

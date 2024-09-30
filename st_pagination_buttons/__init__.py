@@ -18,7 +18,7 @@ else:
     _component_func = components.declare_component("pagination_buttons", path=build_dir)
 
 
-def pagination_buttons(key=None, font_size="10px", width="35px"):
+def st_pagination_buttons(key=None, font_size="10px", width="35px"):
     """Create a new instance of "pagination_buttons".
 
     Parameters

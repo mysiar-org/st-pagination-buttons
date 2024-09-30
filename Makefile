@@ -5,23 +5,23 @@ venv::
 install::
 	. venv/bin/activate && pip install streamlit setuptools twine
 	. venv/bin/activate && pip install -e .
-	cd pagination_buttons/frontend && npm install
+	cd st_pagination_buttons/frontend && npm install
 
 run::
-	cd pagination_buttons/frontend && npm start &
-	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run pagination_buttons/example.py
+	cd st_pagination_buttons/frontend && npm start &
+	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run st_pagination_buttons/example.py
 
 run-front::
-	cd pagination_buttons/frontend && npm start &
+	cd st_pagination_buttons/frontend && npm start &
 
 run-st::
-	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run pagination_buttons/example.py
+	. venv/bin/activate && _ST_PAGINATION_BUTTONS_NOT_RELEASE_=1 streamlit run st_pagination_buttons/example.py
 
 
 build::
 	rm -rf build dist
-	rm -rf pagination_buttons/frontend/build
-	cd pagination_buttons/frontend && npm run build
+	rm -rf st_pagination_buttons/frontend/build
+	cd st_pagination_buttons/frontend && npm run build
 	. venv/bin/activate && python setup.py sdist bdist_wheel
 
 test::
