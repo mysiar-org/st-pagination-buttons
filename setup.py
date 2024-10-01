@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="st-pagination_buttons",
-    version="0.1.0",
+    version="0.1.1",
     author="Piotr Synowiec",
     author_email="psynowiec@gmail.com",
     description="Streamlit pagination buttons component",

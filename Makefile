@@ -3,7 +3,7 @@ venv::
 	. venv/bin/activate && pip install -U pip
 
 install::
-	. venv/bin/activate && pip install streamlit setuptools twine
+	. venv/bin/activate && pip install streamlit setuptools twine wheel
 	. venv/bin/activate && pip install -e .
 	cd st_pagination_buttons/frontend && npm install
 

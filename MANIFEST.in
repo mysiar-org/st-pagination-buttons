@@ -1,1 +1,2 @@
-recursive-include pagination_buttons/frontend/build *
+recursive-include st_pagination_buttons/frontend/build *
+exclude tests/*
