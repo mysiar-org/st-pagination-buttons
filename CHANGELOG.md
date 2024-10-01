@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - fix for missing front build folder after component renaming
 
-## [0.1.0] - 2024-09-30
+## [0.1.0] - 2024-09-30 - REMOVED
 
 ### Changed
 - documentation
@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - _RELEASE issue
 
-## [0.0.1] - 2024-09-30
+## [0.0.1] - 2024-09-30 - REMOVED
 
 ### Added
 - initial version
