@@ -3,7 +3,7 @@ venv::
 	. venv/bin/activate && pip install -U pip
 
 install::
-	. venv/bin/activate && pip install streamlit setuptools twine
+	. venv/bin/activate && pip install streamlit setuptools twine wheel
 	. venv/bin/activate && pip install -e .
 	cd st_pagination_buttons/frontend && npm install
 
@@ -25,8 +25,7 @@ build::
 	. venv/bin/activate && python setup.py sdist bdist_wheel
 
 test::
-	. venv/bin/activate && cd tests && pip install -U -r req.txt && streamlit run test_app.py
-
+	cd tests && make test
 
 upload-test::
 	. venv/bin/activate && python -m twine upload -u $${PYPI_USER} -p $${PYPI_PASS_TEST} --verbose --repository testpypi dist/*

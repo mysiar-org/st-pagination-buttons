@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2024-09-30
+## [0.1.1] - 2024-10-01
+
+### Fixed
+- fix for missing front build folder after component renaming
+
+## [0.1.0] - 2024-09-30 - REMOVED
 
 ### Changed
 - documentation
@@ -21,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - _RELEASE issue
 
-## [0.0.1] - 2024-09-30
+## [0.0.1] - 2024-09-30 - REMOVED
 
 ### Added
 - initial version

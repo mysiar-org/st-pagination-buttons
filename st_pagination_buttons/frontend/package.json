@@ -1,6 +1,6 @@
 {
-  "name": "pagination_buttons",
-  "version": "0.1.0",
+  "name": "st_pagination_buttons",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@types/jest": "^24.0.0",

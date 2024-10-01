@@ -15,7 +15,7 @@ if not _RELEASE:
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
     build_dir = os.path.join(parent_dir, "frontend/build")
-    _component_func = components.declare_component("pagination_buttons", path=build_dir)
+    _component_func = components.declare_component("st_pagination_buttons", path=build_dir)
 
 
 def st_pagination_buttons(key=None, font_size="10px", width="35px"):
