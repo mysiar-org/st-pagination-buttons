@@ -21,7 +21,9 @@ run-st::
 build::
 	rm -rf build dist
 	rm -rf st_pagination_buttons/frontend/build
+	mkdir -p st_pagination_buttons/frontend/build
 	cd st_pagination_buttons/frontend && npm run build
+	touch st_pagination_buttons/frontend/build/bootstrap.min.css.map
 	. venv/bin/activate && python setup.py sdist bdist_wheel
 
 test::
