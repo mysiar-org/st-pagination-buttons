@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 
 _RELEASE = True
 
-if os.getenv('_ST_PAGINATION_BUTTONS_NOT_RELEASE_'):
+if os.getenv("_ST_PAGINATION_BUTTONS_NOT_RELEASE_"):
     _RELEASE = False
 
 if not _RELEASE:
@@ -18,7 +18,7 @@ else:
     _component_func = components.declare_component("st_pagination_buttons", path=build_dir)
 
 
-def st_pagination_buttons(key=None, font_size="10px", width="35px"):
+def st_pagination_buttons(key=None, font_size="10px", width="35px", border_radius: int = 0):
     """Create a new instance of "pagination_buttons".
 
     Parameters
@@ -31,6 +31,7 @@ def st_pagination_buttons(key=None, font_size="10px", width="35px"):
         The font size of the buttons.
     width: str
         The width of the buttons.
+    border_radius: int - buttons border radius in pixels
     Returns
     -------
     str
@@ -41,6 +42,12 @@ def st_pagination_buttons(key=None, font_size="10px", width="35px"):
 
 
     """
-    component_value = _component_func(key=key, font_size=font_size, width=width, default=None)
+    component_value = _component_func(
+        key=key,
+        font_size=font_size,
+        width=width,
+        border_radius=border_radius,
+        default=None,
+    )
 
     return component_value

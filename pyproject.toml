@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "st-pagination-buttons"
+authors = ["Piotr Synowiec <psynowiec@gmail.com>"]
+description = "Streamlit pagination buttons component"
+version = "0.0.0"
+[tool.poetry.dependencies]
+python = "^3.8"
+streamlit = ">= 0.63"
+
+[tool.flake8]
+count = "true"
+exclude = [
+    ".git",
+    ".dev",
+    ".streamlit",
+    "__pycache__",
+    "venv",
+    "var",
+]
+max-line-length = 120
+line-length = 120
+
+[tool.black]
+line-length = 120
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | venv
+  | var
+  | dpt_env
+  | dist
+)/
+'''

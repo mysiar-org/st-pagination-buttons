@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setuptools.setup(
     name="st-pagination-buttons",
-    version="0.1.2",
+    version="0.2.0",
     author="Piotr Synowiec",
     author_email="psynowiec@gmail.com",
     description="Streamlit pagination buttons component",
@@ -32,5 +32,5 @@ setuptools.setup(
             "pytest-playwright-snapshot==1.0",
             "pytest-rerunfailures==12.0",
         ]
-    }
+    },
 )
