@@ -30,8 +30,10 @@ test::
 	cd tests && make test
 
 upload-test::
+	$(MAKE) build
 	. venv/bin/activate && python -m twine upload -u $${PYPI_USER} -p $${PYPI_PASS_TEST} --verbose --repository testpypi dist/*
 
 upload::
+	$(MAKE) build
 	. venv/bin/activate && python -m twine upload -u $${PYPI_USER} -p $${PYPI_PASS} --verbose dist/*
 
