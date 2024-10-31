@@ -5,19 +5,6 @@ const BUTTON_ATTR_RETURNS: string = "element-returns"
 const borderColor: string = "lightgray"
 
 
-const buttonStyle: CSSStyleDeclaration = {
-    marginRight: "5px",
-    border: "1px solid",
-    textAlign: "center",
-    textDecoration: "none",
-    display: "inline-block",
-    fontWeight: "bold",
-    margin: "4px 2px",
-    cursor: "pointer",
-    borderRadius: "8px",
-    outline: "none !important"
-} as CSSStyleDeclaration
-
 const span = document.body.appendChild(document.createElement("span"))
 
 const first = span.appendChild(document.createElement("button"))
@@ -40,20 +27,50 @@ last.textContent = ">>"
 last.setAttribute("title", "Last")
 last.setAttribute(BUTTON_ATTR_RETURNS, "last")
 
-const paginationButtons = [first, previous, next, last]
+const paginationButtons = [
+    {element: first, name: "first"},
+    {element: previous, name: "previous"},
+    {element: next, name: "next"},
+    {element: last, name: "last"},
+]
 
 function onRender(event: Event): void {
+
     const data = (event as CustomEvent<RenderData>).detail
+    const {args} = data;
+    const {
+        font_size,
+        width,
+        border_radius,
+        key,
+    } = args
+
+
+    const buttonStyle: CSSStyleDeclaration = {
+        marginRight: "5px",
+        border: "1px solid",
+        textAlign: "center",
+        textDecoration: "none",
+        display: "inline-block",
+        fontWeight: "bold",
+        margin: "4px 2px",
+        cursor: "pointer",
+        borderRadius: `${border_radius}px`,
+        outline: "none !important"
+    } as CSSStyleDeclaration
+
+
     if (data.theme) {
         const theme = data.theme
-        for (const button of paginationButtons) {
+        for (const {element: button, name} of paginationButtons) {
             Object.assign(button.style, buttonStyle)
 
+            button.id = `${key}-${name}`
             button.style.color = theme.textColor
             button.style.backgroundColor = theme.backgroundColor
             button.style.borderColor = borderColor
-            button.style.fontSize = data.args["font_size"]
-            button.style.width = data.args["width"]
+            button.style.fontSize = font_size
+            button.style.width = width
 
             button.onmouseover = function (): void {
                 button.style.color = theme.primaryColor
