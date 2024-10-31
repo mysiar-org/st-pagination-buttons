@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.2.0] - 2024-10-31
 ### Added
-
+- `border_radius` argument 
 
 ## [0.1.2] - 2024-10-02
 ### Fixed
